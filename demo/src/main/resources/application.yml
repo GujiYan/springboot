@@ -1,0 +1,25 @@
+server:
+  port: 1234
+  servlet:
+    context-path: /
+
+spring:
+    datasource:
+      name:
+      url: jdbc:mysql://127.0.0.1:3306/login?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: 123456
+    messages:
+      ##message.propertiesi是默认的国际化配置文件，不需要特别指定路径
+      basename: i18n.login
+
+  ##禁用thymeleaf的缓存
+    thymeleaf:
+      cache: false
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+
+
+
