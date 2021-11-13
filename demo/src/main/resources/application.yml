@@ -1,23 +1,27 @@
 server:
   port: 1234
   servlet:
-    context-path: /
+    context-path: /demo/
 
 spring:
-    datasource:
-      name:
-      url: jdbc:mysql://127.0.0.1:3306/login?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
-      username: root
-      password: 123456
-    messages:
-      ##message.propertiesi是默认的国际化配置文件，不需要特别指定路径
-      basename: i18n.login
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true & characterEncoding=utf-8 &
+      useSSL=true & serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    ## type: com.alibaba.druid.pool.DruidDataSource 数据库连接池
 
-  ##禁用thymeleaf的缓存
-    thymeleaf:
-      cache: false
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 
-mybatis-plus:
+  mvc:
+    view:
+      prefix: view
+      suffix: .html
+
+mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.demo.entity
 
