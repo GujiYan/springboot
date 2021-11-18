@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/demo/favicon.ico">
     <title>登录界面</title>
-
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- 引入组件库 -->
-    <script src="/demo/vue.min.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="/demo/js/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
+    用户名：<input v-model="username" placeholder="请输入内容" value="{count}"></input>
+    密　码：<input v-model="password" placeholder="请输入内容" value="{count}"></input>
+    <button onclick="showInput();">登录</button>
 </div>
 
 <script>
-    var Main = {
+    const app = Vue.createApp({
         data() {
-            return {
-                input: ''
-            }
+            return { username: '' , password: ''}
         }
+    })
+
+    const vm = app.mount('#app');
+
+    function showInput(){
+        alert(vm.username + ':' + vm.password);
     }
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
 </script>
 </body>
 </html>
