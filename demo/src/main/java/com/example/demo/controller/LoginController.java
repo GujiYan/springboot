@@ -17,7 +17,9 @@ public class LoginController {
     public User login(User user){
         System.out.println(user.toString());
         User realUser = userService.query(user.getUserName());
-        System.out.println(realUser.toString());
+        if(realUser != null){
+            System.out.println(realUser.toString());
+        }
         return realUser;
     }
 

@@ -5,26 +5,41 @@
     <link rel="shortcut icon" href="/demo/favicon.ico">
     <title>登录界面</title>
     <script src="/demo/js/vue.min.js"></script>
+    <script src="/demo/js/axios.min.js"></script>
 </head>
 <body>
 <div id="app">
-    用户名：<input v-model="username" placeholder="请输入内容" value="{count}"></input>
-    密　码：<input v-model="password" placeholder="请输入内容" value="{count}"></input>
-    <button onclick="showInput();">登录</button>
+    用户名：<input v-model="username" placeholder="请输入内容" value="{username}" v-bind:title="username"></input> <br>
+    密　码：<input v-model="password" placeholder="请输入内容" value="{password}"></input> <br>
+    <button v-on:click="login();">登录</button>
 </div>
 
 <script>
     const app = Vue.createApp({
         data() {
             return { username: '' , password: ''}
+        },
+        methods: {
+            login: function(){
+                if (!vm.username || !vm.password) {
+                    alert('用户名，密码非空！');
+                    return;
+                }
+                const url = '/demo/login?userName=' + vm.username + '&password=' + vm.password;
+                axios.get(url).then((response) => {
+                    if (response.data == "")
+                        alert('用户或密码错误，请核对后重新提交！');
+                    else
+                        alert(response.data.userName + ": 校对成功！" );
+                }).catch(function (error){
+                    alert('接口报错！');
+                })
+            }
         }
     })
 
     const vm = app.mount('#app');
 
-    function showInput(){
-        alert(vm.username + ':' + vm.password);
-    }
 </script>
 </body>
 </html>
